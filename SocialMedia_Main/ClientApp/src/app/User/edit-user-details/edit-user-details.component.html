@@ -1,0 +1,106 @@
+<div class="form-container">
+    <form [formGroup]="editUserForm" (ngSubmit)="editUserDetails()">
+        <div class="single-input pic">
+            <img [src]="avatarSrc" alt="Avatar" class="profile-pic"/>
+            <i (click)="openFileInput()" style="color: #c71406;" class="fa-regular fa-pen-to-square" title="Edit image"></i>
+            <input 
+                type="file" id="file" #fileInput style="display: none;" 
+                (change)="handleFileInput($event)"accept="image/*"
+            >
+            <i *ngIf="showRemoveButton" style="color: #c71406;" (click)="removeImage()" class="fa-solid fa-rectangle-xmark" title="Remove image"></i>
+        </div>
+
+        <div class="form-group double-input">
+            <div class="single-input">
+                <label for="FirstName">First Name*</label>
+                <input type="text" id="FirstName" name="firstName" placeholder="First Name" formControlName="firstName">
+                <small class="error-message"
+                    *ngIf="editUserForm.get('firstName')?.invalid && isSubmitted && editUserForm.get('firstName')?.errors?.required">
+                    First name is required
+                </small>
+                <small class="error-message" 
+                    *ngIf="editUserForm.get('firstName')?.invalid && isSubmitted && editUserForm.get('firstName')?.errors?.minlength">
+                    First name must contain at least 2 characters
+                </small>     
+                <small class="error-message" 
+                    *ngIf="editUserForm.get('firstName')?.invalid && isSubmitted && editUserForm.get('firstName')?.errors?.maxlength">
+                    First name cannot contain more than 15 characters
+                </small>       
+            </div>
+        
+            <div class="single-input">
+                <label for="LastName">Last Name</label>
+                <input type="text" id="LastName" name="LastName" placeholder="Last Name" formControlName="lastName">
+            </div>
+        </div>
+        
+        <div class="form-group double-input">
+            <div class="single-input">
+                <label for="DateOfBirth">Date of Birth*</label>
+                <input type="date" id="DateOfBirth" name="dateOfBirth" formControlName="dateOfBirth">
+                <small class="error-message" id="dob"
+                    *ngIf="editUserForm.get('dateOfBirth')?.invalid && isSubmitted && editUserForm.get('dateOfBirth')?.errors?.required">
+                    Date of Birth is required
+                </small>
+            </div>
+            
+            <div class="single-input">
+                <label>Gender*</label>
+                <div class="radio-group">
+                    <input type="radio" id="Male" name="gender" value="Male" formControlName="gender">
+                    <label for="Male">Male</label>
+                    <input type="radio" id="Female" name="gender" value="Female" formControlName="gender">
+                    <label for="Female">Female</label>
+                    <input type="radio" id="Unknown" name="gender" value="Unknown" formControlName="gender">
+                    <label for="Unknown">Unknown</label>
+                </div>
+                <small class="error-message" 
+                    *ngIf="editUserForm.get('gender')?.invalid && isSubmitted && editUserForm.get('gender')?.errors?.required">
+                    Gender is required
+                </small>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="PhoneNumber">Phone Number*</label>
+            <input type="tel" id="PhoneNumber" name="phoneNumber" required placeholder="Phone Number" formControlName="phoneNumber">
+            <small class="error-message" 
+                *ngIf="editUserForm.get('phoneNumber')?.invalid && isSubmitted && editUserForm.get('phoneNumber')?.errors?.required">
+                Phone number is required
+            </small>
+        </div>
+        
+        <div class="form-group double-input">
+            <div class="single-input">
+                <label for="Country">Country*</label>
+                <select id="Country" name="Country" formControlName="country" (change)="getCity(editUserForm.get('country')?.value)">
+                    <option value="">Select a Country</option>
+                  <option *ngFor="let country of countries" [value]="country.countryName">
+                    {{ country.countryName }}
+                  </option>
+                </select>
+                <small class="error-message" *ngIf="editUserForm.get('country')?.invalid && isSubmitted && editUserForm.get('country')?.errors?.required">
+                  Country is required
+                </small>
+            </div>
+            
+            <div class="single-input">
+                <label for="City">City*</label>
+                <select id="City" name="City" formControlName="city">
+                    <option *ngFor="let city of cities" [value]="city">
+                        {{ city }}
+                    </option>
+                </select>
+                <small class="error-message" 
+                    *ngIf="editUserForm.get('city')?.invalid && isSubmitted && editUserForm.get('city')?.errors?.required">
+                    City is required
+                </small>
+            </div>
+        </div>
+        
+        <div class="form-group" style="color: #c71406;">
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>

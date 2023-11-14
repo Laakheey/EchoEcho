@@ -1,0 +1,86 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.nav-item{
+  cursor: pointer !important;
+}
+
+#searchUser{
+  border: solid;
+  cursor: auto;
+}
+
+a{
+  font-size: 19px;
+}
+
+input[type="text"] {
+  width: 30vh;
+  padding: 0.75rem;
+  border: 1px solid white;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.search-results {
+  border: 1px solid #ccc;
+  overflow-y: auto;
+  position: absolute;
+  background-color: white;
+  z-index: 1;
+  top: 9vh;
+  left: 10vh;
+  cursor: pointer;
+  max-height: 50vh;
+  margin-left: 7vh;
+  width: 15vw;
+  border-radius: 3%;
+  border: none;
+}
+
+
+.search-results div {
+  padding: 8px;
+  border: none;
+  border-radius: 3%;
+}
+
+.search-results div:last-child {
+  border-bottom: none;
+}
+
+
+.searchAvatar{
+  width: 4vh;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.headings{
+  margin-left: -10vh;
+}
+
+.search-results div:hover{
+  background-color: gray;
+}
+
+.highlight {
+  color: yellow!important;
+}

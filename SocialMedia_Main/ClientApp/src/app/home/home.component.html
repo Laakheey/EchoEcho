@@ -1,0 +1,12 @@
+<app-add-post></app-add-post>
+
+<div class="post-header" id="headdings" (click)="goToUserProfile()">
+    <img [src]="avatarSrc" alt="Profile" class="profile-pic" />
+  <div class="post-info">
+    <span class="username" style="color: #c71406">{{ userName }}</span>
+  </div>
+</div>
+
+<app-post-view [userId]="loginUserId" [isHomeComponent]="true"></app-post-view>
+
+<p-toast></p-toast>

@@ -1,0 +1,61 @@
+<div class="messenger">
+  <div class="chat-heads">
+    <div class="chat-head-search">
+      <input
+        type="text"
+        [(ngModel)]="searchString"
+        placeholder="Search user"
+        (keyup)="searchUser(searchString)"
+      />
+    </div>
+    <div
+      class="chat-head"
+      *ngFor="let receiver of receivers"
+      [id]="receiver.receiverId"
+      (click)="openUserChat(receiver)"
+    >
+      <img class="profile-pic" [src]="returnUserProfile(receiver.user)" alt="Profile pic">
+      <div class="user-info">
+        <p class="receiverNAme">{{ receiver.receiverFirstName }} {{ receiver.receiverLastName }}</p>
+        <p class="lastMessage" [ngClass]="{'unread-message': !receiver.isMessageRead, 'read-message': receiver.isMessageRead}">
+          {{ receiver.lastMessage }}
+        </p>
+      </div>
+    
+    </div>
+  </div>
+
+  <div class="chat-content" *ngIf="isChatHeadOpen">
+    <div class="userName" (click)="userProfile()">
+      <img class="profile-pic" [src]="returnUserProfile(selectedUser.user)" alt="Profile pic">
+      {{ selectedUserName }}
+    </div>
+
+    <div class="messages" #messagesElem (scroll)="scrollCalled($event)">
+      <ng-container *ngFor="let msg of messageResponse">
+        <div class="message" 
+          [ngClass]="msg.senderId === loginUserId ? 'sent' : 'received'" 
+          [title]="getMessageTime(msg.sentTime)">
+          {{ msg.message }}
+        </div>
+      </ng-container>
+    </div>
+    
+
+    <div class="typing-section">
+      <input type="text" #messageInputBox
+      (keyup.enter)="sendMessage(messageInputBox.value)"
+      placeholder="Type a message..." />
+      <button
+        style="background-color: #c71406;"
+        (click)="sendMessage(messageInputBox.value)"
+      >
+        Send
+      </button>
+    </div>
+  </div>
+
+  <div class="chat-content no-chat" *ngIf="!isChatHeadOpen">
+    <h3>No chats selected</h3>
+  </div>
+</div>

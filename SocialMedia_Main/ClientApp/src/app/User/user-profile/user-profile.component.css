@@ -1,0 +1,20 @@
+.addPost {
+  display: flex;
+  margin-left: 25.5vh;
+  margin-top: -21vh;
+}
+
+.headingForUser{
+  margin-left: -10vh;
+}
+
+.editDetails, button{
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button i{
+  width: 20px;
+  height: 20px;
+}

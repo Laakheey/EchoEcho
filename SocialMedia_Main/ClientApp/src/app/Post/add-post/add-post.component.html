@@ -1,0 +1,113 @@
+<button type="button" class="btn btn-primary" id="addPost" (click)="openModal()">
+  <div class="avatar-section">
+    <img [src]="avatarSrc" alt="Avatar Image" class="avatarImage" />
+  </div>
+  <div class="input-section">
+    <input
+      class="placeholder"
+      type="text"
+      placeholder="What is on your mind, {{ firstName }}?"
+    />
+    <input style="background-color: #c71406; color: white;" type="button" value="Photo/Video" class="photo-video" />
+  </div>
+</button>
+ 
+<ng-template #template>
+  <div class="modal-header">
+    <h5 *ngIf="!isEditPost" class="modal-title pull-left" id="exampleModalLongTitle">
+      Create Post
+    </h5>
+    <h5 *ngIf="isEditPost" class="modal-title pull-left" id="exampleModalLongTitle">
+      Update Post
+    </h5>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal(true)">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="fromModal">
+      <img
+        [src]="avatarSrc"
+        alt="Avatar Image"
+        class="avatarImage onModal"
+      />
+      <span class="firstName" style="color: #001e8d;">{{ userName }}</span>
+    </div>
+    <form [formGroup]="addPostForm" (ngSubmit)="addPost()">
+      <div class="form-group">
+        <textarea
+          #inputField
+          type="text"
+          id="Description"
+          name="Description"
+          placeholder="What is on your mind, {{ firstName }}?"
+          formControlName="description"
+          (keydown)="getDescription()"
+        >
+        </textarea>
+      </div>
+
+      <div id="emojiContain"></div>
+
+      <div *ngIf="thumbnailUrl" class="thumbnail-container">
+        <button class="fileCross" (click)="removeFile()">X</button>
+        <video class="thumbnail" style="height: 100px" *ngIf="!isImage" [src]="thumbnailUrl"></video>
+        <img *ngIf="isImage" [src]="thumbnailUrl" alt="Thumbnail" class="thumbnail"/>
+      </div>
+
+      <div
+        *ngIf="!thumbnailUrl"
+        class="file-drop-zone"
+        (click)="fileInput.click()"
+        (drop)="onDrop($event)"
+        (dragover)="onDragOver($event)"
+        style="color: #c71406;"
+      >
+        Drop files here or click to upload
+        <input
+          id="file"
+          hidden
+          type="file"
+          (change)="onFileChange($event)"
+          #fileInput
+          accept="image/*, video/*"
+        />
+      </div>
+    </form>
+    <div class="form-group postDiv">
+      <button
+        [disabled]="!openPostButton"
+        type="submit"
+        (click)="addPost()"
+        class="postButton"
+        [ngStyle]="
+          !openPostButton
+            ? { 'background-color': '#f9675d', cursor: 'no-drop' }
+            : { 'background-color': '#c71406' }
+        "
+      >
+        Post
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<div class="upload-progress" *ngIf="isUploadStart">
+  <progress class="progressBar" max="100" [value]="uploadProgress">
+  </progress>
+  <p style="color: rgb(100, 118, 237);">{{ uploadProgress }}%</p>
+</div>
+
+<!-- <div class="upload-progress">
+  <div class="progress">
+    <div 
+      class="progress-bar progress-bar-striped progress-bar-animated" 
+      role="progressbar" [style.width]="50 + '%'" 
+      aria-valuenow="25" aria-valuemin="0" 
+      aria-valuemax="100"
+    >
+    </div>
+  </div>
+</div> -->
+
+<p-toast></p-toast>

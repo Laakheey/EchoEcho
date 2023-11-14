@@ -1,0 +1,73 @@
+.post {
+  width: 85vh;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: -1.5vh;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.post-content {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.post-actions button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.post-actions button:hover {
+  background-color: #737275;
+}
+
+.userName-delete {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  width: 100%;
+}
+
+.video-image{
+  height: 75vh;
+  object-fit: cover;
+  display: block;
+  width: 100%;
+  margin-bottom: 1vh;
+}
+
+.deleteButton, ul li button {
+  color: #c71406;
+}

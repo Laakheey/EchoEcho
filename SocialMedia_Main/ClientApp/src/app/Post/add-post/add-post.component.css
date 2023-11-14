@@ -1,0 +1,254 @@
+.form-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+  margin-top: 10%;
+}
+
+.form-container:hover {
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+input[type="text"] {
+  width: 50vh;
+  padding: 0.75rem;
+  border: 1px solid white;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+#next-line {
+  margin: 10px;
+}
+
+.avatarImage {
+  height: 6vh;
+  border-radius: 50%;
+  padding-left: 3vh;
+  margin-right: 3vh;
+}
+
+#Description {
+  height: 10vh;
+  width: 100%;
+  max-height: 10vh;
+  min-height: 10vh;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 2vh;
+}
+
+#Description:focus {
+  border: none;
+  outline: none;
+}
+
+.fromModal {
+  margin-left: -4vh;
+}
+
+.firstName {
+  margin-left: -3vh;
+}
+
+.onModal {
+  height: 8vh !important;
+}
+
+.post {
+  width: 500px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  margin: 50px auto;
+  background-color: #fff;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-left: -1.5vh;
+}
+
+.post-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.post-content {
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+.post-actions button {
+  background-color: #f5f5f5;
+  border: 1px solid #dcdcdc;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.post-actions button:hover {
+  background-color: #e0e0e0;
+}
+/* 
+#addPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  justify-content: center;
+  width: 85vh;
+} */
+
+.file-drop-zone {
+  border: 2px dashed #c71406;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.file-drop-zone.dragover {
+  background: #e9ecef;
+}
+
+#file {
+  display: none;
+}
+
+.thumbnail {
+  max-width: 100px;
+  width: 100px;
+  margin-top: 10px;
+  /* max-height: 30vh;
+  height: 30vh; */
+}
+
+button {
+  cursor: pointer;
+}
+
+.postDiv {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+  padding-top: 3vh;
+}
+
+.postButton {
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  height: 6vh;
+  border: 0;
+  border-radius: 2px;
+}
+
+.close {
+  border: none;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.thumbnail-container {
+  position: relative;
+  display: inline-block;
+}
+
+.fileCross {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.photo-video {
+  border: none;
+  background-color: black;
+  color: gray;
+  border-radius: 7px;
+  margin-top: 5px;
+  width: 30%;
+  height: 40px;
+}
+
+#addPost {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 50px auto;
+  width: 85vh;
+}
+
+.avatar-section {
+  margin-right: 20px;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.placeholder {
+  display: block;
+  margin: 10px 0;
+  min-width: 98%;
+}
+
+.upload-progress{
+  display: flex;
+  float: right;
+  position: absolute;
+  top: 120px;
+  right: 10px;
+  width: 200px;
+  padding: 10px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.progressBar{
+  width: 200px;
+  height: 28px;
+  margin-right: 10px;
+}
+

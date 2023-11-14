@@ -1,0 +1,75 @@
+<header>
+  <nav
+    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+  >
+    <div class="container">
+      <div class="headings">
+        <a class="navbar-brand" [routerLink]="['/']">
+          <img src="assets/logo2.png" alt="Logo" style="width: 60px; height: 60px; border-radius: 50%;">
+        </a>
+        <input *ngIf="isUserLoggedIn" type="text" id="searchUser" placeholder="Search EchoEcho"
+          [(ngModel)]="searchString"
+          (keyup)="searchUser(searchString)"
+        />
+      </div>
+      <div class="search-results" *ngIf="searchUser.length && !hideSearchUser">
+        <div *ngFor="let user of users" (click)="goToUser(user.id)">
+          <ng-container *ngIf="user.avatar; else defaultAvatar">
+            <img class="searchAvatar" [src]="user.avatar" alt="Search user avatar"/>
+          </ng-container>
+          <ng-template #defaultAvatar>
+            <img *ngIf="user.gender === 'Female'" class="searchAvatar" src="assets/female-avatar.avif" alt="Search user avatar"/>
+            <img *ngIf="user.gender === 'Male'" class="searchAvatar" src="assets/male-avatar.avif" alt="Search user avatar"/>
+            <img *ngIf="user.gender === 'Unknown'" class="searchAvatar" src="assets/rather-not-say.avif" alt="Search user avatar"/>
+          </ng-template>
+          {{ user.firstName }} {{user.lastName}}
+        </div>
+      </div>
+      
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+        [ngClass]="{ show: isExpanded }"
+      >
+        <ul class="navbar-nav flex-grow">
+          <li
+            title="Home"
+            class="nav-item"
+            [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a class="nav-link text-dark" [routerLink]="['/']">
+              <i class="fa-solid fa-house" style="color: #001e8d;"></i>
+            </a>
+          </li>
+
+          <li title="Message" *ngIf="isUserLoggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/chatView']"
+              >
+              <i class="fa-solid fa-message" style="color: #001e8d;"></i>
+              </a
+            >
+          </li>
+
+          <li title="Logout" *ngIf="isUserLoggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/auth/logout']"
+              >
+              <i class="fa-solid fa-right-from-bracket" style="color: #001e8d;"></i>
+            </a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
