@@ -76,10 +76,10 @@ namespace SocialMedia_Services.Posts
                 }
 
                 var posts = await _postRepository.GetAll()
+                    .OrderByDescending(x => x.Created)
                     .Include(x => x.User)
                     .Skip((pageNumber - 1) * (int)numberOfPosts)
                     .Take((int)numberOfPosts)
-                    .OrderByDescending(x => x.Created)
                     .ToListAsync();
 
                 if (posts.Count <= 0)
@@ -156,9 +156,9 @@ namespace SocialMedia_Services.Posts
         {
             var posts = await _postRepository.GetAll()
                 .Where(x => x.ParentId == createdById).Include(x => x.User)
+                .OrderByDescending(x => x.Created)
                 .Skip((pageNumber - 1) * (int)numberOfPosts)
                 .Take((int)numberOfPosts)
-                .OrderByDescending(x => x.Created)
                 .ToListAsync();
             if(posts.Count <= 0)
             {

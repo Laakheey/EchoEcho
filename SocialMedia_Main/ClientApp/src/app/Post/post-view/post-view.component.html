@@ -17,6 +17,7 @@
             type="button"
             id="dropdownMenuButton"
             data-bs-toggle="dropdown"
+            (click)="getPostEditTime(post.updated)"
           >
             <i class="fa-solid fa-ellipsis"></i>
           </h4>
@@ -29,6 +30,7 @@
             <li>
               <button class="dropdown-item" (click)="updatePostById(post)">
                 Edit
+                <div *ngIf="updateDateAndTime" style="color: gray;">Last updated: {{ updateDateAndTime }}</div>
               </button>
             </li>
           </ul>

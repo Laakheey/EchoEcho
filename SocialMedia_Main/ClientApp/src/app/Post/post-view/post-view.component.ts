@@ -28,6 +28,7 @@ export class PostViewComponent implements OnInit {
   loginUserId: string = '';
   stopHomeCall: boolean = false;
   stopUserCall: boolean = false;
+  updateDateAndTime: string = '';
 
   constructor(postService: PostService, private fireStorage: AngularFireStorage, messageService: MessageService) {
     this._postService = postService;
@@ -272,5 +273,35 @@ export class PostViewComponent implements OnInit {
     });
   }
 
+  getPostEditTime(time: string) {
+    if (time == null) {
+      this.updateDateAndTime = '';
+    } else {
+      const postDate = new Date(time);
+      const currentDate = new Date();
+  
+      const timeDifferenceInMillis = currentDate.getTime() - postDate.getTime();
+  
+      if (timeDifferenceInMillis < 3600000) {
+        const minutesDifference = Math.floor(timeDifferenceInMillis / (1000 * 60));
+        this.updateDateAndTime = `${minutesDifference} ${minutesDifference === 1 ? 'minute' : 'minutes'} ago`;
+      } else if (
+        postDate.getDate() === currentDate.getDate() &&
+        postDate.getMonth() === currentDate.getMonth() &&
+        postDate.getFullYear() === currentDate.getFullYear()
+      ) {
+        const hoursDifference = Math.floor(timeDifferenceInMillis / (1000 * 60 * 60));
+        this.updateDateAndTime = `${hoursDifference} ${hoursDifference === 1 ? 'hour' : 'hours'} ago`;
+      } else {
+        const options: Intl.DateTimeFormatOptions = {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        };
+        this.updateDateAndTime = postDate.toLocaleDateString('en-US', options);
+      }
+    }
+  }
+  
 
 }
